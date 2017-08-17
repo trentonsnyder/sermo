@@ -11,15 +11,11 @@ gem 'puma', '~> 3.7'
 gem 'jbuilder', '~> 2.5'
 gem 'redis', '~> 3.0'
 gem 'bcrypt', '~> 3.1.7'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
-# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem 'rack-cors'
+gem 'knock', '~> 1.2'
 
 group :development, :test do
   gem 'pry'
+end
 
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
