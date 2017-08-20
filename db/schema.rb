@@ -10,18 +10,63 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170817031234) do
+ActiveRecord::Schema.define(version: 20170820225008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "agencies", force: :cascade do |t|
+    t.string "name"
+  end
+
+  create_table "client_teams", force: :cascade do |t|
+    t.bigint "client_id"
+    t.bigint "team_id"
+    t.index ["client_id"], name: "index_client_teams_on_client_id"
+    t.index ["team_id"], name: "index_client_teams_on_team_id"
+  end
+
+  create_table "clients", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "phone_number"
+    t.datetime "last_seen"
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.string "name"
+    t.string "action"
+    t.text "body"
+    t.datetime "due_date"
+    t.integer "priority"
+    t.string "status"
+    t.bigint "client_id"
+    t.index ["client_id"], name: "index_tasks_on_client_id"
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string "name"
+    t.bigint "agency_id"
+    t.index ["agency_id"], name: "index_teams_on_agency_id"
+  end
+
+  create_table "user_teams", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "team_id"
+    t.index ["team_id"], name: "index_user_teams_on_team_id"
+    t.index ["user_id"], name: "index_user_teams_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "first_name"
     t.string "last_name"
+    t.string "role"
     t.string "password_digest"
     t.string "password"
     t.string "password_confirmation"
+    t.bigint "agency_id"
+    t.index ["agency_id"], name: "index_users_on_agency_id"
   end
 
 end

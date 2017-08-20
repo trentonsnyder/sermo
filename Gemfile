@@ -15,6 +15,8 @@ gem 'redis', '~> 3.3', '>= 3.3.1'
 
 group :development, :test do
   gem 'pry'
+  gem 'faker', git: 'git://github.com/stympy/faker.git', branch: 'master'
+  gem 'awesome_print'
 end
 
 group :development do
