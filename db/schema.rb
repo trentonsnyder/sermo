@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 20170820225008) do
     t.string "last_name"
     t.string "phone_number"
     t.datetime "last_seen"
+    t.bigint "agency_id"
+    t.index ["agency_id"], name: "index_clients_on_agency_id"
   end
 
   create_table "tasks", force: :cascade do |t|

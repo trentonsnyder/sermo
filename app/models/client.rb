@@ -14,6 +14,15 @@ class Client < ApplicationRecord
     presence: true
 
   def display_name
-    "#{last_name}, #{first_name}"
+    "#{self.last_name}, #{self.first_name}"
+  end
+
+  def update_last_seen
+    self.update(last_seen: Time.now)
+  end
+
+  def assign_teams(teams)
+    self.client_teams.destroy_all
+    teams.each { |id| client_teams.create(client_id: self.id, team_id: id) }
   end
 end
