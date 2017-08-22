@@ -8,7 +8,7 @@ class CreateUser < ActiveRecord::Migration[5.1]
       t.string :password_digest
       t.string :password
       t.string :password_confirmation
-      t.belongs_to :agency, index: true
+      t.belongs_to :company, index: true
     end
   end
 end

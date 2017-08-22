@@ -5,7 +5,7 @@ class CreateClients < ActiveRecord::Migration[5.1]
       t.string :last_name
       t.string :phone_number
       t.datetime :last_seen
-      t.belongs_to :agency, index: true
+      t.belongs_to :company, index: true
     end
   end
 end

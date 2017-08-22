@@ -5,7 +5,7 @@ class Api::V1::AuthController < BaseController
     current_user.admin?
   end
 
-  def set_agency
-    @agency = current_user.agency
+  def set_company
+    @agency = current_user.company
   end
 end

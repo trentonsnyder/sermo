@@ -1,6 +1,5 @@
 class User < ApplicationRecord
-  has_many :user_teams, dependent: :destroy
-  has_many :teams, through: :user_teams
+  belongs_to :company
 
   has_secure_password
   validates :password,
@@ -15,7 +14,7 @@ class User < ApplicationRecord
 
   validates :role,
     presence: true,
-    inclusion: { in: %w(admin) }
+    inclusion: { in: %w(admin member) }
 
   def admin?
     role == 'admin'

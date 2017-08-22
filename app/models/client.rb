@@ -1,6 +1,5 @@
 class Client < ApplicationRecord
-  has_many :client_teams, dependent: :destroy
-  has_many :teams, through: :client_teams
+  belongs_to :company
 
   has_many :tasks, dependent: :destroy
 
@@ -21,8 +20,4 @@ class Client < ApplicationRecord
     self.update(last_seen: Time.now)
   end
 
-  def assign_teams(teams)
-    self.client_teams.destroy_all
-    teams.each { |id| client_teams.create(client_id: self.id, team_id: id) }
-  end
 end
