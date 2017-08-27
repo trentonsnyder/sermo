@@ -7,7 +7,6 @@ Rails.application.routes.draw do
     namespace :v1 do
       get 'user', to: 'users#user'
       resources :clients
-      resources :teams
     end
   end
 end
