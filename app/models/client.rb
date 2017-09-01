@@ -4,13 +4,16 @@ class Client < ApplicationRecord
   has_many :tasks, dependent: :destroy
 
   validates :phone_number,
-    uniqueness: true
+    presence: true,
+    uniqueness: { scope: :company_id }
 
   validates :first_name,
     presence: true
 
   validates :last_name,
     presence: true
+
+  after_update :update_last_seen
 
   def display_name
     "#{self.last_name}, #{self.first_name}"

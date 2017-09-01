@@ -2,19 +2,15 @@ class Api::V1::ClientsController < Api::V1::AuthController
   before_action :set_company, only: [:create]
 
   def index
-    @clients = Client.joins(teams: :users).where('users.id = ?', current_user.id)
+    @clients = current_user.company.clients
+    # render json: { clients: @clients, success: 'Clients retrieved.' }, status: 200
     # render jbuilder
   end
 
   def create
     @client = @company.clients.new(client_params)
     if @client.save
-      @client.update_last_seen
-      if params[:teams] && @client.assign_teams(@company.teams.pluck(:id) & params[:teams])
-        render json: { client: @client, message: 'Client saved.' }, status: 200
-      else
-        render json: { client: @client, message: 'Client saved. No teams assigned.' }, status: 200
-      end
+      render json: { client: @client, success: 'Client saved.' }, status: 200
     else
       render json: { error: 'Client not saved.' }, status: 422
     end
