@@ -3,7 +3,6 @@ class Api::V1::ClientsController < Api::V1::AuthController
 
   def index
     @clients = current_user.company.clients
-    # render json: { clients: @clients, success: 'Clients retrieved.' }, status: 200
     # render jbuilder
   end
 
