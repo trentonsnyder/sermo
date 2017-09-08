@@ -7,7 +7,7 @@ class Api::V1::ClientsController < Api::V1::AuthController
   end
 
   def create
-    @client = @company.clients.new(client_params)
+    @client = @company.clients.new(client_params).merge(last_seen: Time.now)
     if @client.save
       render json: { client: @client, success: 'Client saved.' }, status: 200
     else

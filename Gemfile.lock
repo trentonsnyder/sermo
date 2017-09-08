@@ -84,6 +84,10 @@ GEM
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
     pg (0.21.0)
+    phony (2.15.38)
+    phony_rails (0.14.4)
+      activesupport (>= 3.0)
+      phony (~> 2.15)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -153,6 +157,7 @@ DEPENDENCIES
   knock (~> 1.2)
   listen (>= 3.0.5, < 3.2)
   pg (~> 0.18)
+  phony_rails (~> 0.14.2)
   pry
   puma (~> 3.7)
   rails (~> 5.1.1)
