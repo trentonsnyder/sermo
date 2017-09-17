@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       get 'user', to: 'users#user'
-      resources :clients
+      resources :clients, only: [:create, :index]
+      resources :tasks, only: [:create, :index]
     end
   end
 end

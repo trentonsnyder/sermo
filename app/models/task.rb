@@ -10,5 +10,5 @@ class Task < ApplicationRecord
 
   validates :priority,
     presence: true,
-    uniqueness: scope: :client_id
+    uniqueness: { scope: :client_id }
 end
