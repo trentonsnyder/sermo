@@ -4,8 +4,7 @@ class CreateTasks < ActiveRecord::Migration[5.1]
       t.string :name
       t.string :action
       t.text :body
-      t.datetime :due_date
-      t.integer :priority
+      t.date :due_date
       t.string :status
       t.belongs_to :client, index: true
     end

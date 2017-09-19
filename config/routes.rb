@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   
   post 'user_token', to: 'user_token#create'
 
-  namespace :api do
+  namespace :api, constraints: { format: 'json' } do
     namespace :v1 do
       get 'user', to: 'users#user'
       resources :clients, only: [:create, :index]

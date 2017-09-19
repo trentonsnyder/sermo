@@ -4,11 +4,10 @@ class Task < ApplicationRecord
   validates :name,
     presence: true
 
+  validates :client_id,
+    presence: true
+
   validates :status,
     presence: true,
     inclusion: { in: %w(open pending completed revision) }
-
-  validates :priority,
-    presence: true,
-    uniqueness: { scope: :client_id }
 end
