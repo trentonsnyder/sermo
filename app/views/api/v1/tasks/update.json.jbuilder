@@ -1,4 +1,4 @@
-json.task
+json.task do
   json.id @task.id
   json.name @task.name
   json.action @task.action
