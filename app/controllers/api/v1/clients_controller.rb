@@ -15,6 +15,25 @@ class Api::V1::ClientsController < Api::V1::AuthController
     end
   end
 
+  def update
+    @client = current_user.company.clients.find(params[:id])
+    if @client.update(client_params)
+      # render jbuilder
+    else
+      render json: { error: 'Client not updated' }, status: 422
+    end
+  end
+
+  def destroy
+    @client = current_user.company.clients.find(params[:id])
+    client_id = @client.id
+    if @client.destroy
+      render json: { client: client_id }, status: 200
+    else
+      render json: { error: 'Client deleted' }, status: 422
+    end
+  end
+
   private
   
   def client_params

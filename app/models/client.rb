@@ -19,8 +19,6 @@ class Client < ApplicationRecord
   validates :last_seen,
     presence: true
 
-  after_update :update_last_seen
-
   def display_name
     "#{self.last_name}, #{self.first_name}"
   end

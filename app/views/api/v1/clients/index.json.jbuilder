@@ -1,6 +1,8 @@
 json.clients @clients do |c|
   json.id c.id
   json.name c.display_name
+  json.first_name c.first_name
+  json.last_name c.last_name
   json.phone_number c.phone_number.sub('+1', '')
   json.last_seen c.last_seen.strftime('%m/%d/%y')
 end
