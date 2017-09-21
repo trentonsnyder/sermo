@@ -1,4 +1,5 @@
 json.task do
+  json.id @task.id
   json.name @task.name
   json.action @task.action
   json.body @task.body
