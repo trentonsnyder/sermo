@@ -1,5 +1,6 @@
 json.client do
   json.id @client.id
+  json.room_id @client.room.id
   json.name @client.display_name
   json.first_name @client.first_name
   json.last_name @client.last_name

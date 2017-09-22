@@ -1,6 +1,9 @@
 class Api::V1::TasksController < Api::V1::AuthController
 
   def index
+    ActionCable.server.broadcast("online_#{current_user.id}", {
+      message: 'wat'
+    })
     @tasks = Task.joins(client: :company).where('companies.id = ?', current_user.company.id)
     # render jbuilder
   end

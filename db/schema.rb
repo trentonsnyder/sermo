@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170820225008) do
+ActiveRecord::Schema.define(version: 20170922180703) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,20 @@ ActiveRecord::Schema.define(version: 20170820225008) do
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "body"
+    t.bigint "room_id"
+    t.string "messageable_type"
+    t.bigint "messageable_id"
+    t.index ["messageable_type", "messageable_id"], name: "index_messages_on_messageable_type_and_messageable_id"
+    t.index ["room_id"], name: "index_messages_on_room_id"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.bigint "client_id"
+    t.index ["client_id"], name: "index_rooms_on_client_id"
   end
 
   create_table "tasks", force: :cascade do |t|
