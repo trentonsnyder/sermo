@@ -30,11 +30,11 @@ ActiveRecord::Schema.define(version: 20170922180703) do
 
   create_table "messages", force: :cascade do |t|
     t.text "body"
+    t.boolean "seen", default: false
     t.bigint "room_id"
-    t.string "messageable_type"
-    t.bigint "messageable_id"
-    t.index ["messageable_type", "messageable_id"], name: "index_messages_on_messageable_type_and_messageable_id"
+    t.bigint "user_id"
     t.index ["room_id"], name: "index_messages_on_room_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "rooms", force: :cascade do |t|

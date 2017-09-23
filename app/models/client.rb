@@ -2,7 +2,6 @@ class Client < ApplicationRecord
   belongs_to :company
   
   has_many :tasks, dependent: :destroy
-  has_many :messages, as: :messageable
 
   has_one :room, dependent: :destroy
   

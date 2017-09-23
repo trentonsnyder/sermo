@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   belongs_to :company
 
-  has_many :messages, as: :messageable
+  has_many :messages
 
   has_secure_password
   validates :password,
@@ -20,6 +20,10 @@ class User < ApplicationRecord
 
   def admin?
     role == 'admin'
+  end
+
+  def display_name
+    "#{self.first_name}"
   end
 
 end
