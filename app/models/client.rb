@@ -3,7 +3,7 @@ class Client < ApplicationRecord
   
   has_many :tasks, dependent: :destroy
 
-  has_one :room, dependent: :destroy
+  has_many :messages, dependent: :destroy
   
   phony_normalize :phone_number, default_country_code: 'US'
   validates :phone_number,
@@ -21,18 +21,12 @@ class Client < ApplicationRecord
   validates :last_seen,
     presence: true
 
-  after_create :set_up_associations
-
   def display_name
     "#{self.last_name}, #{self.first_name}"
   end
 
   def update_last_seen
     self.update(last_seen: Time.now)
-  end
-
-  def set_up_associations
-    self.create_room()
   end
 
 end

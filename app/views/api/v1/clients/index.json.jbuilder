@@ -1,6 +1,5 @@
-json.clients @clients.includes(:room) do |c|
+json.clients @clients do |c|
   json.id c.id
-  json.room_id c.room.id
   json.name c.display_name
   json.first_name c.first_name
   json.last_name c.last_name

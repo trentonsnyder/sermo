@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       get 'user', to: 'users#user'
       resources :clients, only: [:create, :index, :update, :destroy]
       resources :tasks, only: [:create, :index, :update, :destroy]
-      resources :messages, only: [:index]
+      resources :messages, only: [:index, :create]
     end
   end
 end

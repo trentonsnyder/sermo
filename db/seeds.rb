@@ -13,8 +13,8 @@ valid_phone.each do |phone|
   end
 end
 
-Room.all.each do |r|
+Client.all.each do |c|
   rand(4..14).times do
-    r.messages.create(body: Faker::Hipster.sentence, user_id: [nil, 1, 2].sample)
+    c.messages.create(body: Faker::Hipster.sentence, user_id: [nil, 1, 2].sample)
   end
 end
