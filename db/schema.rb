@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20170922180703) do
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
+    t.string "phone_number"
   end
 
   create_table "messages", force: :cascade do |t|

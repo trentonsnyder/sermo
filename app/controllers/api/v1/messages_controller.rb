@@ -10,7 +10,17 @@ class Api::V1::MessagesController < Api::V1::AuthController
     @client = current_user.company.clients.find(params[:message][:client_id])
     @message = @client.messages.new(message_params.merge(user_id: current_user.id))
     if @message.save
-      # render jbuilder
+      # send message to client with twilio
+      begin
+        twilio = Twilio::REST::Client.new(ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN'])
+        twilio.messages.create(
+          body: message.body,
+          to: @client.phone_number,
+          from: current_user.company.phone_number)
+        rescue Twilio::REST::TwilioError => e
+          logger.info "USER_MESSAGE_FAIL, #{current_user.id}"
+        end
+      head :ok
     else
       render json: { errors: 'Message not saved.' }, status: 422
     end

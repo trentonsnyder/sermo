@@ -16,6 +16,7 @@ gem 'phony_rails', '~> 0.14.2'
 gem 'puma', '~> 3.7'
 gem 'rack-cors'
 gem 'redis', '~> 3.3', '>= 3.3.1'
+gem 'twilio-ruby', '~> 5.2.3'
 
 group :development, :test do
   gem 'pry'
