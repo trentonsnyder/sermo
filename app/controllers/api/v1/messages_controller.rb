@@ -14,7 +14,7 @@ class Api::V1::MessagesController < Api::V1::AuthController
       begin
         twilio = Twilio::REST::Client.new(ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN'])
         twilio.messages.create(
-          body: message.body,
+          body: "#{current_user.message_name}: #{@message.body}",
           to: @client.phone_number,
           from: current_user.company.phone_number)
         rescue Twilio::REST::TwilioError => e
