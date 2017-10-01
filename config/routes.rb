@@ -11,7 +11,7 @@ Rails.application.routes.draw do
         get '/documents', to: 'documents#index'
         post '/documents', to: 'documents#create'
         get '/documents/:id/assign_url', to: 'documents#assign_url'
-        delete '/documents/:id', to: 'documents#destroy'
+        delete '/documents', to: 'documents#destroy'
       end
       resources :tasks, only: [:create, :index, :update, :destroy]
       resources :messages, only: [:index, :create]

@@ -16,7 +16,8 @@ class Api::V1::DocumentsController < Api::V1::AuthController
     document = params['document']
     @document = @client.documents.new(name: document.original_filename, extension: document.content_type)
     if @document.save
-      url = "clients/#{@client.id}/documents/#{@document.name}"
+      # TODO: add company and company id in fron of url
+      url = "/clients/#{@client.id}/documents/#{@document.name}"
       @document.update(url: url)
       if @document.upload(document, url)
         # render jbuilder
@@ -30,6 +31,11 @@ class Api::V1::DocumentsController < Api::V1::AuthController
   end
   
   def destroy
+    docs_to_delete = params[:documents].pluck(:id)
+    @documents = @client.documents.where('documents.id IN (?)', @client.documents.pluck(:id) & docs_to_delete )
+    doc_ids = @documents.pluck(:id)
+    @documents.each { |d| d.destroy }
+    render json: { documents: doc_ids}
   end
   
   private
@@ -39,7 +45,7 @@ class Api::V1::DocumentsController < Api::V1::AuthController
   end
 
   def document_params
-    params.require(:document).permit(:name, :extension, :url, :client_id, :task_id)
+    params.require(:document).permit(:name, :extension, :url, :client_id, :task_id).permit!(:documents)
   end
   
 end
