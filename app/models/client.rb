@@ -2,7 +2,7 @@ class Client < ApplicationRecord
   belongs_to :company
   
   has_many :tasks, dependent: :destroy
-
+  has_many :documents, dependent: :destroy
   has_many :messages, dependent: :destroy
   
   phony_normalize :phone_number, default_country_code: 'US'

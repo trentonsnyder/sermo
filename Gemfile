@@ -17,6 +17,7 @@ gem 'puma', '~> 3.7'
 gem 'rack-cors'
 gem 'redis', '~> 3.3', '>= 3.3.1'
 gem 'twilio-ruby', '~> 5.2.3'
+gem 'aws-sdk-s3', '~> 1'
 
 group :development, :test do
   gem 'pry'

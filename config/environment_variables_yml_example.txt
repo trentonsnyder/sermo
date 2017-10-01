@@ -1,6 +1,15 @@
 development:
   TWILIO_ACCOUNT_SID: account_sid
   TWILIO_AUTH_TOKEN: auth_token
+  AWS_REGION: region
+  S3_BUCKET_NAME: bucket
+  AWS_ACCESS_KEY_ID: key
+  AWS_SECRET_ACCESS_KEY: secret key
+
 production:
   TWILIO_ACCOUNT_SID: account_sid
   TWILIO_AUTH_TOKEN: auth_token
+  AWS_REGION: region
+  S3_BUCKET_NAME: bucket
+  AWS_ACCESS_KEY_ID: key
+  AWS_SECRET_ACCESS_KEY: secret key

@@ -10,7 +10,6 @@ class Api::V1::MessagesController < Api::V1::AuthController
     @client = current_user.company.clients.find(params[:message][:client_id])
     @message = @client.messages.new(message_params.merge(user_id: current_user.id))
     if @message.save
-      # send message to client with twilio
       begin
         twilio = Twilio::REST::Client.new(ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN'])
         twilio.messages.create(

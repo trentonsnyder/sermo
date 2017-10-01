@@ -13,7 +13,7 @@ class Api::V1::HooksController < BaseController
           client.messages.create(body: params[:Body])
         end
       rescue
-        # logger.add_tags 'TWILIO_MESSAGE_HOOK_FAILURE', "#{Time.now}, #{params[:From]}"
+        logger.info "TWILIO_MESSAGE_HOOK_FAILURE, #{Time.now}, #{params[:From]}"
       end
       head :ok
 
