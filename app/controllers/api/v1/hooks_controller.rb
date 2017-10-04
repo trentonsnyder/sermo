@@ -17,6 +17,8 @@ class Api::V1::HooksController < BaseController
       end
       head :ok
 
+      # imageUrl = params[:mediaUrl0]
+
     #   {
     #     "ToCountry" => "US",
     #       "ToState" => "NY",

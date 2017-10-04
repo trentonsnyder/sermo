@@ -12,6 +12,6 @@ class Task < ApplicationRecord
     inclusion: { in: %w(open pending completed revision) }
 
   def self.next_due
-    self.where('tasks.status IN (?)', ['open', 'pending']).order("due_date ASC").first
+    self.where('tasks.status IN (?)', ['open', 'revision']).order("due_date ASC").first
   end
 end
