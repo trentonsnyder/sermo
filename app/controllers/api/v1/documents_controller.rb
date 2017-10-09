@@ -34,8 +34,11 @@ class Api::V1::DocumentsController < Api::V1::AuthController
     docs_to_delete = params[:documents].pluck(:id)
     @documents = @client.documents.where('documents.id IN (?)', @client.documents.pluck(:id) & docs_to_delete )
     doc_ids = @documents.pluck(:id)
-    @documents.each { |d| d.destroy }
-    render json: { documents: doc_ids}
+    if @documents.destroy_all
+      render json: { documents: doc_ids }
+    else
+      render json: { error: 'error' }, status: 422
+    end
   end
   
   private
