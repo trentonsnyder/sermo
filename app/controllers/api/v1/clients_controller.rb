@@ -6,6 +6,11 @@ class Api::V1::ClientsController < Api::V1::AuthController
     # render jbuilder
   end
 
+  def show
+    @client = current_user.company.clients.find(params[:id])
+    # render jbuilder
+  end
+
   def create
     @client = @company.clients.new(client_params.merge(last_seen: Time.now))
     if @client.save

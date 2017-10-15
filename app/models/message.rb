@@ -4,8 +4,14 @@ class Message < ApplicationRecord
 
   validates :body,
     presence: true
-  
-  after_create_commit {MessageBroadcastJob.perform_now self}
+
+  after_create_commit :send_message
+
+  def send_message
+    conversation = self.client.conversation
+    conversation.update(open: true, notification: true)
+    MessageBroadcastJob.perform_now(conversation, self)
+  end
 
   def self.check_command(message, client)
     case message[:Body].split.first.downcase

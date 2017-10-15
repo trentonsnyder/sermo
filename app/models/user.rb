@@ -3,6 +3,9 @@ class User < ApplicationRecord
 
   has_many :messages
 
+  has_many :user_conversations, dependent: :destroy
+  has_many :conversations, through: :user_conversations
+
   has_secure_password
   validates :password,
     presence: true,
@@ -28,6 +31,10 @@ class User < ApplicationRecord
 
   def message_name
     "#{self.first_name} #{self.last_name[0]}"
+  end
+
+  def assign_conversation(client)
+    self.user_conversations.find_or_create_by(conversation_id: client.conversation.id)
   end
 
 end

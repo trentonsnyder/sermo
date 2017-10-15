@@ -15,6 +15,6 @@ end
 
 Client.all.each do |c|
   rand(4..14).times do
-    c.messages.create(body: Faker::Hipster.sentence, user_id: [nil, 1, 2].sample)
+    client.messages.create(body: Faker::Hipster.sentence, user_id: [nil, 1, 2].sample)
   end
 end
